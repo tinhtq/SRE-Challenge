@@ -18,10 +18,30 @@ resource "aws_lb_target_group" "ecs_tg" {
 
 }
 
-resource "aws_lb_listener" "app_listener" {
+resource "aws_lb_listener" "http_listener" {
   load_balancer_arn = aws_lb.app_alb.arn
   port              = 80
   protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+# HTTPS Listener with SSL Certificate from ACM
+resource "aws_lb_listener" "https_listener" {
+  load_balancer_arn = aws_lb.app_alb.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08" # You can choose a different policy if needed
+  certificate_arn   = var.acm_certificate_arn     # Use the existing ACM certificate
+
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ecs_tg.arn

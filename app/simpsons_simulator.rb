@@ -26,15 +26,24 @@ end
 ###################################
 # FIXME: Implement Lisa endpoints #
 ###################################
+# Lisa endpoints
 get '/lisa' do
-  "Hello! I’m Lisa. Have you brought me a book?"
+  "The baritone sax is the best sax"
 end
 
 post '/lisa' do
   gift = parse_gift(request.body.read)
-  if gift == 'book'
-    [200, 'Thank you! I love reading.']
+  
+  case gift
+  when 'book'
+    [200, "I love it"]
+  when 'saxaphone'
+    [200, "I REALLY love it"]
+  when 'video_game'
+    [400, "I hate it"]
+  when 'skateboard'
+    [400, "I REALLY hate it"]
   else
-    [400, "That's thoughtful, but I prefer books."]
+    [400, "I'm not sure how I feel about that"]
   end
 end
