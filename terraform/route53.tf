@@ -1,6 +1,6 @@
 resource "aws_route53_record" "simpsons_dns" {
   zone_id = var.route53_zone_id
-  name    = "${var.subdomain}.${var.domain}"
+  name    = var.subdomain
   type    = "A"
 
   alias {

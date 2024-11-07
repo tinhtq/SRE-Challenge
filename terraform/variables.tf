@@ -14,10 +14,6 @@ variable "subdomain" {
   default     = "sre"
 }
 
-variable "domain" {
-  description = "Primary domain"
-  default     = "jv-magic.com"
-}
 
 variable "route53_zone_id" {
   type = string
