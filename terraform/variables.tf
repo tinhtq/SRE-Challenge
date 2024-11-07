@@ -9,3 +9,17 @@ variable "public_subnet_cidrs" {
 variable "private_subnet_cidrs" {
   default = ["10.0.3.0/24", "10.0.4.0/24"]
 }
+variable "subdomain" {
+  description = "Subdomain for the app"
+  default     = "sre"
+}
+
+variable "domain" {
+  description = "Primary domain"
+  default     = "jv-magic.com"
+}
+
+variable "route53_zone_id" {
+  type = string
+
+}

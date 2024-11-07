@@ -3,6 +3,8 @@ resource "aws_ecs_cluster" "simpsons_cluster" {
 }
 
 resource "aws_ecs_task_definition" "simpsons_task" {
+  track_latest = true
+
   family                   = "simpsons-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]

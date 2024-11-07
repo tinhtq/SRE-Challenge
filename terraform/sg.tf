@@ -1,7 +1,12 @@
 resource "aws_security_group" "ecs_sg" {
   name_prefix = "ecs-sg-"
   vpc_id      = aws_vpc.main.id # Replace with your VPC ID
-
+  ingress {
+    security_groups = [aws_security_group.alb_sg.id]
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+  }
   egress {
     from_port   = 0
     to_port     = 0
