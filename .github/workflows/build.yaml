@@ -22,5 +22,7 @@ jobs:
       - name: Build and Push Docker image to ECR
         run: |
           docker build -t ${{ secrets.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }} .
+          docker build -t ${{ secrets.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:latest .
           docker push ${{ secrets.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
+          docker push ${{ secrets.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:latest
         working-directory: app
