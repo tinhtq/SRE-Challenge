@@ -4,6 +4,9 @@ FROM ruby:2.6.3
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
+# Install the correct version of bundler
+RUN gem install bundler -v 2.0.2
+
 # Set the working directory inside the container
 WORKDIR /app
 
@@ -23,4 +26,4 @@ EXPOSE 4567
 ENV RACK_ENV=production
 
 # Define the command to run your Sinatra app in production
-CMD ["bundle", "exec", "ruby", "simpsons_simulator.rb", "-o", "0.0.0.0", "-p", "4567"]
+CMD ["bundle", "exec", "ruby", "app.rb", "-o", "0.0.0.0", "-p", "4567"]
