@@ -26,4 +26,4 @@ EXPOSE 4567
 ENV RACK_ENV=production
 
 # Define the command to run your Sinatra app in production
-CMD ["bundle", "exec", "ruby", "app.rb", "-o", "0.0.0.0", "-p", "4567"]
+CMD ["bundle", "exec", "ruby", "simpsons_simulator.rb", "-o", "0.0.0.0", "-p", "4567"]
